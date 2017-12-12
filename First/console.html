@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1></h1>
+<div id="view">
+    <p>view</p>
+</div>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    function test() {
+        var threshold = 160;
+        //    while(true) {
+        var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+        var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        var orientation = widthThreshold ? 'vertical' : 'horizontal';
+        console.log(widthThreshold );
+        console.log(heightThreshold);
+        if (!(heightThreshold && widthThreshold)){
+            $.getScript("./test.js",function () {
+                test();
+            });  //加载js文件
+        }else{
+            $('#view').load('./domrender.html', function () {
+                    test();
+            });
+        }
+    }
+    test();
+</script>
+</body>
+
+</html>
